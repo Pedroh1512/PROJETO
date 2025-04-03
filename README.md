@@ -29,6 +29,28 @@ Acerca do desenvolvimento do jogo: Foi utilizado para switch case para seleciona
 
 # Referências
 - DAMAS, Luís. Linguagem C. 10.ed. Rio de Janeiro: LTC, 2007.
-- Prints ChatGPT (Publicados nos Anexos da Atividade).
+- Prints ChatGPT:
 ![Chat Gpt 1](https://github.com/user-attachments/assets/1d6dd15c-b1d2-4ee9-b70b-7419b6e4c1ba)
+![Chat Gpt 2](https://github.com/user-attachments/assets/b185cf3f-8af9-4d0a-8b01-ca0a65da21d6)
+![Chat Gpt 3](https://github.com/user-attachments/assets/c74697da-145d-4af2-8700-3b84d3f98b3f)
+![Chat Gpt 4](https://github.com/user-attachments/assets/3636d4be-ae3f-49a9-9d16-d8a06e73f358)
+![Chat Gpt 5](https://github.com/user-attachments/assets/f22d892f-cd34-42e9-b234-56f76cf2a2ee)
+![Chat Gpt 6](https://github.com/user-attachments/assets/1303fabb-4393-4cd4-b086-b8c5802cd861)
+![Chat Gpt 7](https://github.com/user-attachments/assets/307d96b2-2f6e-4628-8c14-a433b9c8ae46)
+![Chat Gpt 8](https://github.com/user-attachments/assets/8a922c7d-6949-4b8d-bf4d-425db805a3d0)
+![Chat Gpt 9](https://github.com/user-attachments/assets/2ccd4947-8d34-4810-b1fa-a392cb44f510)
+![Chat Gpt 10](https://github.com/user-attachments/assets/e4486936-0f50-4a0c-8672-f7dacd673ad5)
+![Chat Gpt 11](https://github.com/user-attachments/assets/ca7eccd3-a444-45c1-8be3-ed7859bd7f83)
+![Chat Gpt 12](https://github.com/user-attachments/assets/85c22b54-e82e-4b90-b304-15e7fe47d8b1)
+
+
+
+
+
+
+
+
+
+
+
 
