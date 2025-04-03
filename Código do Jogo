@@ -1,0 +1,617 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <locale.h>
+
+using namespace std;
+
+// Função para checar se o jogador tem 5 ou mais dedos em alguma das mãos e zerar se necessário
+void checarStatus(int& mao1, int& mao2, int& mao3, int& mao4) {
+    if (mao1 >= 5) {
+        printf("A mao atingiu o limite de 5 dedos. ZERANDO!\n\n");
+        mao1 = 0;
+    }
+    if (mao2 >= 5) {
+        printf("A mao atingiu o limite de 5 dedos. ZERANDO!\n\n");
+        mao2 = 0;
+    }
+    if (mao3 >= 5) {
+        printf("A mao atingiu o limite de 5 dedos. ZERANDO!\n\n");
+        mao3 = 0;
+    }
+    if (mao4 >= 5) {
+        printf("A mao atingiu o limite de 5 dedos. ZERANDO!\n\n");
+        mao4 = 0;
+    }
+}
+
+// Função para mostrar o status das mãos dos jogadores
+void mostrarStatus(int Mao1, int Mao2, int Mao3, int Mao4) {
+    printf("\nStatus das maos:\n");
+    printf("Jogador 1 - Mao esquerda: %d, Mao direita: %d\n", Mao1, Mao2);
+    printf("Jogador 2 - Mao esquerda: %d, Mao direita: %d\n\n", Mao3, Mao4);
+}
+
+// Função para redistribuir os dedos entre as mãos do Jogador 1
+void redistribuir1(int& mao1, int& mao2) {
+    int total = mao1 + mao2;
+    int novoValorMao1, novoValorMao2;
+    
+    do {
+        printf("Digite o novo valor para a mao 1 (deve ser entre 1 e %d, mas nao pode ser 0): ", total - 1);
+        scanf("%d", &novoValorMao1);
+        novoValorMao2 = total - novoValorMao1;
+        
+        if (novoValorMao1 > 0 && novoValorMao2 > 0) {
+            mao1 = novoValorMao1;
+            mao2 = novoValorMao2;
+            printf("Maos redistribuidas: Mao 1 = %d, Mao 2 = %d\n", mao1, mao2);
+            break;
+        } else {
+            printf("Erro! Ambas as maos precisam ter ao menos 1 dedo.\n");
+        }
+    } while (1);
+}
+
+// Função para redistribuir os dedos entre as mãos do Jogador 2
+void redistribuir2(int& mao3, int& mao4) {
+    int total = mao3 + mao4;
+    int novoValorMao3, novoValorMao4;
+    
+    do {
+        printf("Digite o novo valor para a mao 3 (deve ser entre 1 e %d, mas nao pode ser 0): ", total - 1);
+        scanf("%d", &novoValorMao3);
+        novoValorMao4 = total - novoValorMao3;
+        
+        if (novoValorMao3 > 0 && novoValorMao4 > 0) {
+            mao3 = novoValorMao3;
+            mao4 = novoValorMao4;
+            printf("Maos redistribuidas: Mao 3 = %d, Mao 4 = %d\n", mao3, mao4);
+            break;
+        } else {
+            printf("Erro! Ambas as maos precisam ter ao menos 1 dedo.\n");
+        }
+    } while (1);
+}
+
+void finalizar(int& mao1, int& mao2, int& mao3, int& mao4, char& tecla){
+    if(mao1 == 0 && mao2 == 0){
+        printf("O jogador 2 e o VENCEDOR!\n\n");
+    }
+    if(mao3 == 0 && mao4 == 0){
+        printf("O jogador 1 e o VENCEDOR!\n\n");
+    }
+return;
+}
+
+int main() {
+	setlocale(LC_ALL, "Portuguese"); 
+    srand(time(NULL)); // Inicializa a geração de números aleatórios
+    int caixa_certa, caixa_perdedora;
+    int escolha;
+    int op0, op1, op2, op3, op4, op5, op6, op7, op8, num_acertos; // Variáveis de controle
+    char tecla;
+    int Mao1 = 1, Mao2 = 1; // Mãos do Jogador 1
+    int Mao3 = 1, Mao4 = 1; // Mãos do Jogador 2
+    while (true) {  // Menu principal
+        printf("PROGRAMMING PARTY\n");
+        printf("1 -> PERGUNTA E RESPOSTA\n");
+        printf("2 -> COBRA NA CAIXA!\n");
+        printf("3 -> GOUSMAS WAR\n");
+        printf("4 -> SAIR\n");
+        scanf("%d", &op0);
+        	fflush(stdin);
+        		system("cls");
+
+        switch(op0) {
+            case 1:
+                while (true) {
+                   num_acertos = 0;
+				    printf("JOGO DE PERGUNTAS E RESPOSTAS\n");
+
+                    // Pergunta 1
+                    printf("QUAL A CAPITAL DO BRASIL?\n");
+                    printf("1 -> Sao Paulo\n");
+                    printf("2 -> Rio de Janeiro\n");
+                    printf("3 -> Brasilia\n");
+                    printf("4 -> Goiania\n");
+
+                    scanf("%d", &op1);
+                    switch (op1) {
+                        case 1: case 2: case 4:
+                            printf("VOCE ERROU!\n");
+                            break;
+                        case 3:
+                            printf("VOCE ACERTOU!\n");
+                           num_acertos++;
+						    break;
+                        default:
+                            printf("Opcao invalida.\n");
+                            break;
+                    }
+
+                    // Pergunta 2
+                    printf("QUAL O MAIOR PAIS DO MUNDO EM AREA?\n");
+                    printf("1 -> China\n");
+                    printf("2 -> Estados Unidos\n");
+                    printf("3 -> Canada\n");
+                    printf("4 -> Russia\n");
+
+                    scanf("%d", &op2);
+                    switch (op2) {
+                        case 1: case 2: case 3:
+                            printf("VOCE ERROU!\n");
+                            break;
+                        case 4:
+                            printf("VOCE ACERTOU!\n");
+                            num_acertos++;
+                            break;
+                        default:
+                            printf("Opcao invalida.\n");
+                            break;
+                    }
+
+                    // Pergunta 3
+                    printf("QUAL A TEMPERATURA DE EBULIÇÃO DA ÁGUA?\n");
+                    printf("1 -> 80C\n");
+                    printf("2 -> 90C\n");
+                    printf("3 -> 100C\n");
+                    printf("4 -> 110C\n");
+
+                    scanf("%d", &op3);
+                    switch (op3) {
+                        case 1: case 2: case 4:
+                            printf("VOCE ERROU!\n");
+                            break;
+                        case 3:
+                            printf("VOCE ACERTOU!\n");
+                            num_acertos++;
+                            break;
+                        default:
+                            printf("Opcao invalida.\n");
+                            break;
+                    }
+
+                    // Pergunta 4
+                    printf("QUAL A MAIOR FLORESTA DO MUNDO?\n");
+                    printf("1 -> Floresta do Congo\n");
+                    printf("2 -> Floresta Amazonica\n");
+                    printf("3 -> Floresta Negra\n");
+                    printf("4 -> Floresta de Bambu\n");
+
+                    scanf("%d", &op4);
+                    switch (op4) {
+                        case 1: case 3: case 4:
+                            printf("VOCE ERROU!\n");
+                            break;
+                        case 2:
+                            printf("VOCE ACERTOU!\n");
+                            num_acertos++;
+                            break;
+                        default:
+                            printf("Opcao inválida.\n");
+                            break;
+                    }
+
+                    // Pergunta 5
+                    printf("QUAL O MAIOR OCEANO DO MUNDO?\n");
+                    printf("1 -> Atlantico\n");
+                    printf("2 -> Indico\n");
+                    printf("3 -> Pacifico\n");
+                    printf("4 -> Artico\n");
+
+                    scanf("%d", &op5);
+                    switch (op5) {
+                        case 1: case 2: case 4:
+                            printf("VOCE ERROU!\n");
+                            break;
+                        case 3:
+                            printf("VOCE ACERTOU!\n");
+                            num_acertos++;
+                            break;
+                        default:
+                            printf("Opcao invalida.\n");
+                            break;
+                    }
+
+                    printf("O JOGO TERMINOU!\n");
+                    printf("Sua pontuação foi: %d/5\n",num_acertos);
+                    printf("Você deseja: \n");
+                    printf("1 -> JOGAR NOVAMENTE\n");
+                    printf("2 -> VOLTAR AO LAYOUT\n");
+                    scanf(" %c", &tecla);
+
+                    if (tecla == '2') {
+                        	system("cls");
+						break;
+                    } else if (tecla != '1') {
+                        		system("cls");
+						printf("Entrada invalida. Saindo...\n");
+                        		
+						break;
+                    }
+                    else {
+							system("cls");
+					}
+                }
+                break;
+
+            case 2:
+                while (true) {
+                	printf("A historia do jogo se passa dentro de uma tumba egipcia onde dois\n");
+					printf("exploradores ficaram presos. No centro da sala, ha cinco caixas: uma delas\n");
+                    printf("contem o botao para abrir a porta, enquanto uma outra esconde uma cobra\n");
+                    printf("mortal. A cada rodada, o local do botao e da cobra muda de caixa de forma\n");
+                    printf("aleatoria, aumentando o desafio e a imprevisibilidade do jogo.\n\n");
+                    int aa,bb;
+                    char a[25];
+                    char b[25];
+						printf("Escolha seu personagem!\n"
+						       "[1]Luiza_sonza     [2]Chico_Moedas\n"
+							   "[3]Mario           [4]Sonic\n"
+							   "[5]Tigrinho        [6]Pedro_Girotto\n"
+							   "[7]Neymar\n");
+					
+					printf("Explorador 1, escolha seu personagem: \n");	   
+				   scanf("%d",&aa);
+					switch(aa){
+						case 1:
+							strcpy(a,"Luiza_sonza");
+							break;
+						case 2:
+							strcpy(a,"Chico_Moedas");
+							break;
+						case 3:
+							strcpy(a,"Mario");
+							break;
+						case 4:
+							strcpy(a,"Sonic");
+							break;
+						case 5: 
+							strcpy(a,"Tigrinho");
+							break;
+						case 6:
+							strcpy(a,"Pedro_Girotto");
+							break;
+						case 7:
+							strcpy(a,"Neymar");
+							break;
+
+					}	
+					printf("Explorador 2, escolha seu personagem: \n");
+					scanf("%d",&bb);
+					switch(bb){
+						case 1:
+							strcpy(b,"Luiza_sonza");
+							break;
+						case 2:
+							strcpy(b,"Chico_Moedas");
+							break;
+						case 3:
+							strcpy(b,"Mario");
+							break;
+						case 4:
+							strcpy(b,"Sonic");
+							break;
+						case 5: 
+							strcpy(b,"Tigrinho");
+							break;
+						case 6:
+							strcpy(b,"Pedro_Girotto");
+							break;
+						case 7:
+							strcpy(b,"Neymar");
+							break;
+					}   
+						printf("Explorador 1: %s\n",a);
+						printf("Explorador 2: %s\n",b);
+					
+					
+					caixa_certa = rand() % 5 + 1;
+                    caixa_perdedora = rand() % 5 + 1;
+                    while (caixa_perdedora == caixa_certa) {
+                        caixa_perdedora = rand() % 5 + 1;
+                    }
+                    printf("Escolha uma caixa entre 1 e 5\n");
+                    int contador;
+                    contador = rand() % 2 + 1;
+					while(contador<=10) {
+
+                       if(contador%2!=0){
+                        printf("Rodada de %s:\n",a);
+						scanf("%d",&escolha);
+						printf("Voce escolheu a caixa %d \n", escolha);
+						 if (escolha < 1 || escolha > 5) {
+                            printf("Escolha invalida! Por favor, escolha uma caixa entre 1 e 5.\n");
+                            continue;
+                        }
+						else if (escolha == caixa_certa) {
+                            printf("Parabens! Voce venceu!\n");
+                            break;
+                        } else if (escolha == caixa_perdedora) {
+                            printf("Que pena! Voce perdeu!\n");
+                            break;
+                        } else {
+                            printf("Passe a vez para o adversario.\n");
+                        }
+					   }
+					   else if(contador%2==0) {
+						   printf("Rodada de %s:\n",b);
+						   scanf("%d",&escolha);
+						   printf("Voce escolheu a caixa %d.\n", escolha);
+						    if (escolha < 1 || escolha > 5) {
+                            printf("Escolha invalida! Por favor, escolha uma caixa entre 1 e 5.\n");
+                            continue;
+                        }
+						   else if (escolha == caixa_certa) {
+                            printf("Parabens! Voce venceu!\n");
+                            break;
+                        } else if (escolha == caixa_perdedora) {
+                            printf("Que pena! Voce perdeu!\n");
+                            break;
+                        } else {
+                            printf("Passe a vez para o adversario.\n");
+                        }
+					   }
+                        contador++;
+                    }
+
+                        printf("O JOGO TERMINOU!\n");
+                        printf("Você deseja: \n");
+                        printf("1 -> JOGAR NOVAMENTE\n");
+                        printf("2 -> VOLTAR AO LAYOUT\n");
+                        scanf(" %c", &tecla);
+                        fflush(stdin);
+                        if (tecla == '2') {
+                            	system("cls");
+							break;
+                        } else if (tecla != '1') {
+                        			system("cls");
+							printf("Entrada invalida. Saindo...\n");
+							break;
+                        }
+                        else {
+								system("cls");
+						}
+                    }
+                break;
+
+            case 3:
+                while (true) {    
+                	mostrarStatus(Mao1, Mao2, Mao3, Mao4);
+                    while(true) {
+                        printf("Jogador 1, escolha a mao:\n");
+                        printf("1 -> Mao esquerda\n");
+                        printf("2 -> Mao direita\n");
+                        scanf("%d", &op6);
+
+                        switch(op6) {
+                            case 1:
+                                printf("Jogador 1, escolha uma opcao:\n");
+                                printf("1 -> Atacar\n");
+                                printf("2 -> Redistribuir\n");
+                                scanf("%d", &op7);
+
+                                switch(op7) {
+                                    case 1:
+                                        printf("Escolha a mao para atacar no Jogador 2:\n");
+                                        printf("1 -> Mao esquerda\n");
+                                        printf("2 -> Mao direita\n");
+                                        scanf("%d", &op8);
+                                        switch(op8) {
+                                            case 1:
+                                                printf("Jogador 1 atacando com a Mao esquerda na Mao esquerda do Jogador 2.\n");
+                                                Mao3 += Mao1;
+                                                break;
+                                            case 2:
+                                                printf("Jogador 1 atacando com a Mao esquerda na Mao direita do Jogador 2.\n");
+                                                Mao4 += Mao1;
+                                                break;
+                                            default:
+                                                printf("Opcao invalida!\n");
+                                                break;
+                                        }
+                                        checarStatus(Mao1, Mao2, Mao3, Mao4);
+                                        mostrarStatus(Mao1, Mao2, Mao3, Mao4);
+                                        break;
+                                    
+                                    case 2:
+                                        printf("Redistribuindo...\n");
+                                        redistribuir1(Mao1, Mao2);
+                                        mostrarStatus(Mao1, Mao2, Mao3, Mao4);
+                                        break;
+                                    default:
+                                        printf("Opcao invalida!\n");
+                                        break;
+                                }
+                                break;
+
+                            case 2:
+                                printf("Jogador 1, escolha uma opcao:\n");
+                                printf("1 -> Atacar\n");
+                                printf("2 -> Redistribuir\n");
+                                scanf("%d", &op8);
+
+                                switch(op8) {
+                                    case 1:
+                                        printf("Escolha a mao para atacar no Jogador 2:\n");
+                                        printf("1 -> Mao esquerda\n");
+                                        printf("2 -> Mao direita\n");
+                                        scanf("%d", &op7);
+                                        switch(op7) {
+                                            case 1:
+                                                printf("Jogador 1 atacando com a Mao direita na Mao esquerda do Jogador 2.\n");
+                                                Mao3 += Mao2;
+                                                break;
+                                            case 2:
+                                                printf("Jogador 1 atacando com a Mao direita na Mao direita do Jogador 2.\n");
+                                                Mao4 += Mao2;
+                                                break;
+                                            default:
+                                                printf("Opcao invalida!\n");
+                                                break;
+                                        }
+                                        checarStatus(Mao1, Mao2, Mao3, Mao4);
+                                        mostrarStatus(Mao1, Mao2, Mao3, Mao4);
+                                        break;
+                                    
+                                    case 2:
+                                        printf("Redistribuindo...\n");
+                                        redistribuir1(Mao1, Mao2);
+                                        mostrarStatus(Mao1, Mao2, Mao3, Mao4);
+                                        break;
+                                    default:
+                                        printf("Opcao invalida!\n");
+                                        break;
+                                }
+                                break;
+
+                            default:
+                                printf("Opção invalida!\n");
+                                break;
+                        }
+                        if(Mao1 == 0 && Mao2 == 0 || Mao3 == 0 && Mao4 == 0){
+                        finalizar(Mao1, Mao2, Mao3, Mao4, tecla);
+                        break;
+						}
+
+                        // Agora vamos adicionar as opções para o Jogador 2
+
+                        printf("Jogador 2, escolha a mao:\n");
+                        printf("1 -> Mao esquerda\n");
+                        printf("2 -> Mao direita\n");
+                        scanf("%d", &op6);
+
+                        switch(op6) {
+                            case 1:
+                                printf("Jogador 2, escolha uma opcao:\n");
+                                printf("1 -> Atacar\n");
+                                printf("2 -> Redistribuir\n");
+                                scanf("%d", &op7);
+
+                                switch(op7) {
+                                    case 1:
+                                        printf("Escolha a mao para atacar no Jogador 1:\n");
+                                        printf("1 -> Mao esquerda\n");
+                                        printf("2 -> Mao direita\n");
+                                        scanf("%d", &op8);
+                                        switch(op8) {
+                                            case 1:
+                                                printf("Jogador 2 atacando com a Mao esquerda na Mao esquerda do Jogador 1.\n");
+                                                Mao1 += Mao3;
+                                                break;
+                                            case 2:
+                                                printf("Jogador 2 atacando com a Mao esquerda na Mao direita do Jogador 1.\n");
+                                                Mao2 += Mao3;
+                                                break;
+                                            default:
+                                                printf("Opcao invalida!\n");
+                                                break;
+                                        }
+                                        checarStatus(Mao1, Mao2, Mao3, Mao4);
+                                        mostrarStatus(Mao1, Mao2, Mao3, Mao4);
+                                        break;
+                                    
+                                    case 2:
+                                        printf("Redistribuindo...\n");
+                                        redistribuir2(Mao3, Mao4);
+                                        mostrarStatus(Mao1, Mao2, Mao3, Mao4);
+                                        break;
+                                    default:
+                                        printf("Opcao invalida!\n");
+                                        break;
+                                }
+                                break;
+
+                            case 2:
+                                printf("Jogador 2, escolha uma opcao:\n");
+                                printf("1 -> Atacar\n");
+                                printf("2 -> Redistribuir\n");
+                                scanf("%d", &op8);
+
+                                switch(op8) {
+                                    case 1:
+                                        printf("Escolha a mao para atacar no Jogador 1:\n");
+                                        printf("1 -> Mao esquerda\n");
+                                        printf("2 -> Mao direita\n");
+                                        scanf("%d", &op7);
+                                        switch(op7) {
+                                            case 1:
+                                                printf("Jogador 2 atacando com a Mao direita na Mao esquerda do Jogador 1.\n");
+                                                Mao1 += Mao4;
+                                                break;
+                                            case 2:
+                                                printf("Jogador 2 atacando com a Mao direita na Mao direita do Jogador 1.\n");
+                                                Mao2 += Mao4;
+                                                break;
+                                            default:
+                                                printf("Opcao invalida!\n");
+                                                break;
+                                        }
+                                        checarStatus(Mao1, Mao2, Mao3, Mao4);
+                                        mostrarStatus(Mao1, Mao2, Mao3, Mao4);
+                                        break;
+                                    case 2:
+                                        printf("Redistribuindo...\n");
+                                        redistribuir2(Mao3, Mao4);
+                                        mostrarStatus(Mao1, Mao2, Mao3, Mao4);
+                                        break;
+                                    default:
+                                        printf("Opcao invalida!\n");
+                                        break;
+                                }
+                                break;
+
+                            default:
+                                printf("Opção invalida!\n");
+                                break;
+                        }
+                        if(Mao1 == 0 && Mao2 == 0 || Mao3 == 0 && Mao4 == 0){
+                        finalizar(Mao1, Mao2, Mao3, Mao4, tecla);
+                        break;
+						}
+                    }
+
+                    mostrarStatus(Mao1, Mao2, Mao3, Mao4);
+
+                    checarStatus(Mao1, Mao2, Mao3, Mao4);
+					// Exibir o final do jogo e perguntar se o jogador quer jogar novamente ou voltar ao menu
+					printf("O JOGO TERMINOU!\n");
+					Mao1 = 1, Mao2 = 1, Mao3 = 1, Mao4 = 1; 
+					printf("Você deseja: \n");
+					printf("1 -> JOGAR NOVAMENTE\n");
+					printf("2 -> VOLTAR AO LAYOUT\n");
+					scanf(" %c", &tecla);
+					
+
+				if (tecla == '2') {
+				// Sair para o menu principal
+				system("cls");
+				break;
+				} else if (tecla != '1') {
+				// Entrada inválida, saindo
+					system("cls");
+				printf("Entrada invalida. Saindo...\n");
+					
+				break;
+				
+				}
+				else {
+						system("cls");
+				}
+                }
+                break;
+
+            case 4:
+                printf("Saindo do jogo...\n");
+                	system("cls");
+				return 0;
+
+            default:
+                printf("Opção invalida! Tente novamente.\n");
+                break;
+        }
+    }
+    return 0;
+}
