@@ -29,4 +29,5 @@ Acerca do desenvolvimento do jogo: Foi utilizado para switch case para seleciona
 
 # Referências
 - DAMAS, Luís. Linguagem C. 10.ed. Rio de Janeiro: LTC, 2007.
-- Prints ChatGPT:
+- Prints ChatGPT (Publicados nos Anexos da Atividade).
+
